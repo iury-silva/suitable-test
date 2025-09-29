@@ -64,7 +64,7 @@ export const Header = () => {
               />
             )}
             <div>
-              <h1 className="text-xl md:text-3xl font-bold">{data.name}</h1>
+              <h1 className="text-2xl md:text-3xl font-bold">{data.name}</h1>
             </div>
           </div>
 
