@@ -60,7 +60,9 @@ export function Cart({
                 className="flex items-center justify-between bg-muted p-4 rounded-lg"
               >
                 <div className="flex-1">
-                  <h3 className="font-medium text-sm">{item.name}</h3>
+                  <h3 className="font-medium text-sm max-w-[calc(100%-3rem)] truncate">
+                    {item.name}
+                  </h3>
                   <p className="text-xs text-muted-foreground">
                     {formatMoney(item.price)} x {item.quantity}
                   </p>
@@ -70,14 +72,12 @@ export function Cart({
                     {formatMoney(item.price * item.quantity)}
                   </p>
                 </div>
-                <div className="bg-red-600 h-10 w-10 flex items-center justify-center rounded-full ml-4 text-white">
-                  <Button
-                    variant="ghost"
-                    onClick={() => removeFromCart(item.id)}
-                  >
-                    <TrashIcon className="h-4 w-4" />
-                  </Button>
-                </div>
+                <Button
+                  onClick={() => removeFromCart(item.id)}
+                  className="ml-4 text-white bg-red-600 hover:bg-red-700 p-2 rounded-lg"
+                >
+                  <TrashIcon className="h-4 w-4" />
+                </Button>
               </div>
             ))}
           </div>
