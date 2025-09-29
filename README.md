@@ -1,73 +1,128 @@
-# React + TypeScript + Vite
+# Desafio Frontend - Suitable
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto foi desenvolvido como resposta ao desafio técnico da Suitable para avaliação de candidatos na área de desenvolvimento frontend.
 
-Currently, two official plugins are available:
+## 📋 Sobre o Desafio
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O objetivo é desenvolver uma página web que servirá como _Home_ do cardápio digital de uma hamburgueria, incluindo:
 
-## React Compiler
+- **Cabeçalho** com identificação do estabelecimento
+- **Cardápio** com categorias e produtos organizados
+- **Rodapé** com carrinho de compras (quantidade e valor total)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+### Core
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 19** - Biblioteca para construção da interface
+- **TypeScript** - Superset do JavaScript com tipagem estática
+- **Vite** - Build tool e dev server
+- **Tailwind CSS 4** - Framework CSS utilitário
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Gerenciamento de Estado
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Zustand** - Gerenciamento de estado global
+- **TanStack Query** - Gerenciamento de estado assíncrono e cache
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### UI/UX
+
+- **Radix UI** - Componentes primitivos acessíveis
+- **Lucide React** - Ícones
+- **Vaul** - Drawer component
+- **Class Variance Authority** - Utilitário para variantes de componentes
+
+### Desenvolvimento
+
+- **ESLint** - Linting de código
+- **React Router Dom** - Roteamento
+
+## 🏗️ Arquitetura do Projeto
+
+```
+src/
+├── api/              # Configuração da API
+├── components/       # Componentes reutilizáveis
+│   ├── cart/        # Componentes do carrinho
+│   ├── company/     # Componentes da empresa
+│   ├── layout/      # Layout e estrutura da página
+│   ├── products/    # Componentes de produtos
+│   ├── theme/       # Componentes de tema
+│   └── ui/          # Componentes de interface (shadcn/ui)
+├── contexts/         # Context providers
+├── hooks/           # Custom hooks
+├── pages/           # Páginas da aplicação
+├── routes/          # Configuração de rotas
+├── services/        # Serviços de API
+├── stores/          # Stores do Zustand
+├── types/           # Definições de tipos TypeScript
+└── utils/           # Funções utilitárias
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔧 Instalação e Execução
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Pré-requisitos
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js (versão 16 ou superior)
+- npm ou yarn
+
+### Passos
+
+1. **Clone o repositório**
+
+   ```bash
+   git clone https://github.com/iury-silva/suitable-test.git
+   ```
+
+2. **Instale as dependências**
+
+   ```bash
+   npm install
+   ```
+
+3. **Execute o projeto em modo desenvolvimento**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Acesse a aplicação**
+   ```
+   http://localhost:5173
+   ```
+
+## 📚 Scripts Disponíveis
+
+```bash
+npm run dev          # Executa em modo desenvolvimento
+npm run build        # Gera build de produção
+npm run preview      # Visualiza o build de produção
+npm run lint         # Executa o linting
+npm run storybook    # Executa o Storybook
+npm run build-storybook # Gera build do Storybook
 ```
+
+## 🔗 APIs Utilizadas
+
+- **Produtos e Categorias**: https://demoburger.stbl.com.br/estoque/v2/app/products/list/?app_variant=mobile
+- **Dados da Empresa**: https://demoburger.stbl.com.br/core/v2/app/store/config/?format=json&app_variant=mobile
+
+## ✨ Funcionalidades Implementadas
+
+### ✅ Requisitos Obrigatórios
+
+- [x] Cabeçalho com identificação do estabelecimento
+- [x] Cardápio organizado por categorias
+- [x] Botões de adicionar (+) e remover (-) produtos
+- [x] Rodapé com carrinho (quantidade e valor total)
+- [x] Apresentação de nome e preço dos produtos
+
+### 🎯 Funcionalidades Extras
+
+- [x] Design responsivo
+- [x] Componentes reutilizáveis e bem documentados
+- [x] Gerenciamento de estado otimizado
+- [x] Interface acessível (Radix UI)
+- [x] Tema claro/escuro
+- [x] Loading states e error handling
+
+
