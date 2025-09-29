@@ -43,10 +43,10 @@ export const HomePage = () => {
   }
 
   return (
-    <div className="mx-auto py-8 space-y-8 overflow-visible">
+    <div className="space-y-8">
       {categories.map((category) => (
-        <div key={category.category_id}>
-          <h2 className="text-2xl font-semibold mb-4 text-foreground">
+        <div key={category.category_id} className="relative">
+          <h2 className="sticky top-0 text-xl font-semibold mb-4 px-4 py-4 -mx-4 bg-brand-primary text-white shadow-lg rounded-lg">
             {category.category_name}
           </h2>
           <Products
