@@ -34,6 +34,8 @@ export function CompanyInfo({
   setIsOpen: (isOpen: boolean) => void;
   company: Company;
 }) {
+
+  // Função para abrir links em uma nova aba
   const handleOpenLink = useCallback((url: string) => {
     window.open(url, "_blank");
   }, []);
@@ -44,6 +46,7 @@ export function CompanyInfo({
 
   const { data } = company;
 
+  // Função para abrir o endereço no Google Maps
   const openGoogleMaps = () => {
     if (data.address) {
       const fullAddress = `${data.address.street}, ${data.address.number}, ${data.address.city}, ${data.address.state}`;
@@ -76,6 +79,7 @@ export function CompanyInfo({
         </DialogHeader>
 
         <div className="flex-1 overflow-y-auto">
+          {/* Informações da empresa */}
           <Accordion type="single" collapsible className="w-full">
             {data.about && (
               <AccordionItem value="about" className="border-b">
@@ -89,7 +93,7 @@ export function CompanyInfo({
                 </AccordionContent>
               </AccordionItem>
             )}
-
+            {/* Endereço */}
             {data.address && (
               <AccordionItem value="address" className="border-b">
                 <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-accent/50">
@@ -123,7 +127,7 @@ export function CompanyInfo({
                 </AccordionContent>
               </AccordionItem>
             )}
-
+            {/* Horário de funcionamento */}
             {data.opening_hours && data.opening_hours.length > 0 && (
               <AccordionItem value="hours" className="border-b">
                 <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-accent/50">
@@ -169,6 +173,7 @@ export function CompanyInfo({
                 </AccordionContent>
               </AccordionItem>
             )}
+            {/* Informações de contato */}
             {(data.phone || data.email || data.whatsapp_url) && (
               <AccordionItem value="contact" className="border-b">
                 <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-accent/50">
@@ -213,6 +218,7 @@ export function CompanyInfo({
                 </AccordionContent>
               </AccordionItem>
             )}
+            {/* Links para redes sociais */}
             {socialLinks.length > 0 && (
               <AccordionItem value="social" className="border-b">
                 <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-accent/50">

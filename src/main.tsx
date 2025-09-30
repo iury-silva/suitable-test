@@ -10,6 +10,7 @@ const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
       <QueryClientProvider client={queryClient}>
+        {/* ThemeProvider para gerenciar temas da aplicação Dark/Light */}
         <ThemeProvider defaultTheme="system">
           <App />
         </ThemeProvider>

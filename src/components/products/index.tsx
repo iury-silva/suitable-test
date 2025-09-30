@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/stores/cart";
+import { React } from "react";
 
 export function Products({ products }: { products: ProductsResponse }) {
   return (
@@ -21,6 +22,7 @@ function ProductCard({
 }: {
   product: ProductsResponse["products"][number];
 }) {
+  // Acessa as funções e estado individualmente para evitar re-renderizações desnecessárias
   const addToCart = useCartStore((state) => state.addToCart);
   const updateProductQuantity = useCartStore(
     (state) => state.updateProductQuantity
@@ -28,11 +30,13 @@ function ProductCard({
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const items = useCartStore((state) => state.items);
 
+  // Memoiza a quantidade para evitar cálculos desnecessários
   const quantity = useMemo(() => {
     const item = items.find((item) => item.id === product.id);
     return item ? item.quantity : 0;
   }, [items, product.id]);
 
+  // Funções para aumentar e diminuir a quantidade do produto no carrinho
   const increase = () => {
     const newQuantity = quantity + 1;
     const productId = product.id;
@@ -40,11 +44,11 @@ function ProductCard({
       addToCart({
         id: productId,
         name: product.name,
-        price: product.promotional_price || product.price,
+        price: product.promotional_price || product.price, // Usa o preço promocional se disponível
         quantity: 1,
       });
     } else {
-      updateProductQuantity(productId, newQuantity);
+      updateProductQuantity(productId, newQuantity); // Atualiza a quantidade existente
     }
   };
 
@@ -54,10 +58,11 @@ function ProductCard({
     const newQuantity = quantity - 1;
     const productId = product.id;
 
+    // Se a nova quantidade for 0, remove o item do carrinho
     if (newQuantity === 0) {
       removeFromCart(productId);
     } else {
-      updateProductQuantity(productId, newQuantity);
+      updateProductQuantity(productId, newQuantity); // Atualiza a quantidade existente
     }
   };
 
@@ -79,6 +84,7 @@ function ProductCard({
         </div>
 
         <div className="flex items-center justify-between mt-2">
+          {/* Se o produto tiver um preço promocional, exibe ambos os preços */}
           {product.promotional_price ? (
             <div className="flex flex-col">
               <span className="text-green-600 font-medium text-xs sm:text-base mr-2">

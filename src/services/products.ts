@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@/api";
 import type { ProductsResponse } from "@/types/products";
 
-
+// Lista os produtos da API para exibição no catálogo
 export const fetchProducts = async (): Promise<ProductsResponse> => {
   const response = await api.get<ProductsResponse>(
     "/estoque/v2/app/products/list/?app_variant=mobile"

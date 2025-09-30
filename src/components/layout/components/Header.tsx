@@ -13,6 +13,7 @@ export const Header = () => {
   const { data: company } = useCompany();
   const companyData = company?.data;
 
+  // Atualiza as cores primária e secundária da empresa no CSS root baseado no retorno da API
   useEffect(() => {
     if (companyData) {
       const root = document.documentElement;
@@ -21,6 +22,7 @@ export const Header = () => {
     }
   }, [companyData]);
 
+  // Exibe um esqueleto de carregamento enquanto os dados da empresa não estão disponíveis
   if (!companyData) {
     return (
       <>
@@ -40,6 +42,7 @@ export const Header = () => {
   return (
     <header className="relative overflow-hidden">
       <ModeToggle className="absolute top-4 right-4 z-10" />
+      {/* Imagem de fundo da empresa */}
       {companyData.background_image && (
         <div className="dark:opacity-30 opacity-70">
           {companyData.background_image.includes(".mp4") ? (
@@ -50,7 +53,7 @@ export const Header = () => {
               playsInline
               preload="auto"
               key={companyData.background_image}
-              className="w-full h-48 object-cover"
+              className="w-full h-56 object-cover"
             >
               <source src={companyData.background_image} type="video/mp4" />
             </video>
@@ -63,6 +66,7 @@ export const Header = () => {
           )}
         </div>
       )}
+      {/* Informações importantes da empresa */}
       <div className="relative z-20 container mx-auto p-4 h-full flex flex-col justify-end bg-background -mt-6 rounded-t-4xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
           <div className="flex items-center gap-4 bg-background p-2">
@@ -135,7 +139,7 @@ export const Header = () => {
             </Alert>
           ))}
       </div>
-
+      {/* Dialog de informações da empresa */}
       {companyData && (
         <CompanyInfo
           isOpen={isCompanyInfoOpen}

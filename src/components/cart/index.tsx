@@ -19,12 +19,14 @@ export function Cart({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) {
+  // Acessa o estado do carrinho individualmente para evitar re-renderizações desnecessárias
   const totalItems = useCartStore((state) => state.totalItems);
   const totalPrice = useCartStore((state) => state.totalPrice);
   const items = useCartStore((state) => state.items);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
 
   useEffect(() => {
+    // Fecha o carrinho automaticamente se não houver itens
     if (totalItems === 0) {
       setIsOpen(false);
     }
@@ -49,7 +51,7 @@ export function Cart({
             </DrawerClose>
           </div>
         </DrawerHeader>
-
+        {/* Lista de itens no carrinho */}
         <div className="flex-1 overflow-y-auto p-4">
           <div className="space-y-4">
             {items.map((item) => (

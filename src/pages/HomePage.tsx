@@ -5,11 +5,13 @@ import { Skeleton } from "@/components/ui/skeleton";
 export const HomePage = () => {
   const { data, isLoading: isLoadingProducts } = useProducts();
 
+  // Extrai categorias únicas dos produtos para exibição de seções separadas por categoria
   const categories = data
     ? Array.from(
+      // Usa um Map para garantir que cada categoria seja única e remover duplicatas
         new Map(
           data.products.map((p) => [
-            p.category_id,
+            p.category_id, // Chave única para cada categoria
             {
               category_id: p.category_id,
               category_name: p.category_name,
@@ -21,6 +23,7 @@ export const HomePage = () => {
       ).sort((a, b) => a.category_order - b.category_order)
     : [];
 
+  // Agrupa os produtos por categoria para exibição separada em cada seção
   const productsByCategory = data
     ? categories.reduce((acc, category) => {
         acc[category.category_id] = data.products.filter(
@@ -30,6 +33,8 @@ export const HomePage = () => {
       }, {} as Record<string, typeof data.products>)
     : {};
 
+
+  // Exibe skeletons enquanto os produtos estão carregando  
   if (isLoadingProducts) {
     return (
       <div className="space-y-8">
@@ -50,7 +55,7 @@ export const HomePage = () => {
   }
 
   return (
-    <div className="space-y-8 container">
+    <div className="space-y-8">
       {categories.map((category) => (
         <div key={category.category_id} className="relative">
           <h2 className="sticky top-0 text-xl font-semibold mb-4 p-4 bg-brand-primary text-white shadow-2xl rounded-lg">

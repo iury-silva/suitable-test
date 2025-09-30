@@ -3,12 +3,14 @@ import { persist } from "zustand/middleware";
 import type { CartState } from "@/types/cart";
 
 export const useCartStore = create<CartState>()(
+  // Persistência do estado do carrinho no localStorage
   persist(
     (set, get) => ({
       items: [],
       totalItems: 0,
       totalPrice: 0,
 
+      // Recalcula o total de itens e o preço total com base nos itens do carrinho
       recalc: (items) => ({
         items,
         totalItems: items.reduce((total, item) => total + item.quantity, 0),
@@ -37,22 +39,20 @@ export const useCartStore = create<CartState>()(
         set((state) =>
           get().recalc(state.items.filter((item) => item.id !== id))
         ),
-
+        
       updateProductQuantity: (id, quantity) =>
         set((state) => {
           if (quantity <= 0) {
             return {
-              items: state.items.filter((item) => item.id !== id),
+              items: state.items.filter((item) => item.id !== id), // Remove o item se a quantidade for 0 ou menor
             };
           }
           return get().recalc(
             state.items.map((item) =>
-              item.id === id ? { ...item, quantity } : item
+              item.id === id ? { ...item, quantity } : item // Atualiza a quantidade do item
             )
           );
         }),
-
-      clearCart: () => set({ items: [] }),
     }),
     {
       name: "cart-storage",
