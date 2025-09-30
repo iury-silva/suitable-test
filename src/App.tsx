@@ -1,10 +1,11 @@
-import AppRoutes from "./routes";
+import AppLayout from "./components/layout/AppLayout";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <>
-      <AppRoutes />
-    </>
+    <AppLayout>
+      <HomePage />
+    </AppLayout>
   );
 }
 
