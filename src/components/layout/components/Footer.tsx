@@ -3,14 +3,17 @@ import { useCartStore } from "@/stores/cart";
 import { formatMoney } from "@/utils/formatMoney";
 import Cart from "@/components/cart";
 import { useState } from "react";
+import { useProducts } from "@/services/products";
 
 export const Footer = () => {
-  const { getTotalItems, getTotalPrice } = useCartStore();
+  const totalItems = useCartStore((state) => state.totalItems);
+  const totalPrice = useCartStore((state) => state.totalPrice);
   const [isOpen, setIsOpen] = useState(false);
+  const { isLoading } = useProducts();
 
   return (
     <>
-      {getTotalItems() > 0 && (
+      {totalItems > 0 && !isLoading && (
         <div
           className="sticky bottom-0 w-full bg-brand-primary text-white p-4 flex justify-between items-center cursor-pointer"
           onClick={() => setIsOpen(true)}
@@ -18,7 +21,7 @@ export const Footer = () => {
           <div className="relative">
             <ShoppingCartIcon className="h-8 w-8" />
             <div className="absolute -top-2 -right-2 bg-red-600 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
-              {getTotalItems()}
+              {totalItems}
             </div>
           </div>
           <div className="flex-1">
@@ -26,7 +29,7 @@ export const Footer = () => {
           </div>
           <div className="text-sm font-bold">
             <p className="text-sm">Total:</p>
-            <p>{formatMoney(getTotalPrice())}</p>
+            <p>{formatMoney(totalPrice)}</p>
           </div>
         </div>
       )}
