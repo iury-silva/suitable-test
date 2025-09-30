@@ -21,8 +21,12 @@ function ProductCard({
 }: {
   product: ProductsResponse["products"][number];
 }) {
-  const { addToCart, updateProductQuantity, removeFromCart, items } =
-    useCartStore();
+  const addToCart = useCartStore((state) => state.addToCart);
+  const updateProductQuantity = useCartStore(
+    (state) => state.updateProductQuantity
+  );
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const items = useCartStore((state) => state.items);
 
   const quantity = useMemo(() => {
     const item = items.find((item) => item.id === product.id);
