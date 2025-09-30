@@ -19,17 +19,16 @@ export function Cart({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) {
-  const { getTotalItems, getTotalPrice, items, removeFromCart } =
-    useCartStore();
-
-  const totalItems = getTotalItems();
-  const totalPrice = getTotalPrice();
+  const totalItems = useCartStore((state) => state.totalItems);
+  const totalPrice = useCartStore((state) => state.totalPrice);
+  const items = useCartStore((state) => state.items);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
 
   useEffect(() => {
-    if (getTotalItems() === 0) {
+    if (totalItems === 0) {
       setIsOpen(false);
     }
-  }, [getTotalItems, setIsOpen]);
+  }, [totalItems, setIsOpen]);
 
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
@@ -40,8 +39,7 @@ export function Cart({
               <DrawerTitle className="text-xl text-start">Carrinho</DrawerTitle>
               <DrawerDescription className="flex items-center gap-2 mt-1">
                 <ShoppingCartIcon className="h-4 w-4" />
-                {totalItems} item{totalItems > 1 ? "s" : ""} - Total:{" "}
-                {formatMoney(totalPrice)}
+                {totalItems} item{totalItems > 1 ? "s" : ""}
               </DrawerDescription>
             </div>
             <DrawerClose asChild>
@@ -90,7 +88,7 @@ export function Cart({
               {formatMoney(totalPrice)}
             </span>
           </div>
-          <Button className="w-full bg-brand-primary hover:bg-brand-primary/90 py-3 rounded-xl">
+          <Button className="w-full bg-brand-primary hover:bg-brand-primary/90 py-3 rounded-lg">
             Finalizar Pedido
           </Button>
         </div>
