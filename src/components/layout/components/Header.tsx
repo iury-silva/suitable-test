@@ -43,7 +43,15 @@ export const Header = () => {
       {companyData.background_image && (
         <div className="dark:opacity-30 opacity-70">
           {companyData.background_image.includes(".mp4") ? (
-            <video autoPlay muted loop className="w-full h-48 object-cover">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              key={companyData.background_image}
+              className="w-full h-48 object-cover"
+            >
               <source src={companyData.background_image} type="video/mp4" />
             </video>
           ) : (
