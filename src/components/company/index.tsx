@@ -10,7 +10,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useCompanyStore } from "@/stores/company";
 import {
   MapPinIcon,
   ClockIcon,
@@ -24,16 +23,17 @@ import { Button } from "@/components/ui/button";
 import { formatTime } from "@/utils/formatTime";
 import { DAY_NAMES } from "@/utils/dates";
 import { useCallback } from "react";
+import type { Company } from "@/types/company";
 
 export function CompanyInfo({
   isOpen,
   setIsOpen,
+  company,
 }: {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  company: Company;
 }) {
-  const company = useCompanyStore((state) => state.company);
-
   const handleOpenLink = useCallback((url: string) => {
     window.open(url, "_blank");
   }, []);
@@ -154,7 +154,7 @@ export function CompanyInfo({
                   </div>
                   <div className="flex items-center gap-2 mt-3 pt-2 border-t">
                     <div
-                      className={`w-2 h-2 rounded-full ${
+                      className={`w-2 h-2 rounded-full animate-pulse ${
                         data.is_open ? "bg-green-500" : "bg-red-500"
                       }`}
                     />
@@ -241,4 +241,4 @@ export function CompanyInfo({
   );
 }
 
-export default CompanyInfo ;
+export default CompanyInfo;
