@@ -26,15 +26,14 @@ O objetivo é desenvolver uma página web que servirá como _Home_ do cardápio 
 
 ### UI/UX
 
+- **Shadcn/UI** - https://ui.shadcn.com/
 - **Radix UI** - Componentes primitivos acessíveis
 - **Lucide React** - Ícones
-- **Vaul** - Drawer component
-- **Class Variance Authority** - Utilitário para variantes de componentes
+- **Vaul** - [Drawer component](https://ui.shadcn.com/docs/components/drawer)
 
 ### Desenvolvimento
 
 - **ESLint** - Linting de código
-- **React Router Dom** - Roteamento
 
 ## 🏗️ Arquitetura do Projeto
 
@@ -51,7 +50,6 @@ src/
 ├── contexts/         # Context providers
 ├── hooks/           # Custom hooks
 ├── pages/           # Páginas da aplicação
-├── routes/          # Configuração de rotas
 ├── services/        # Serviços de API
 ├── stores/          # Stores do Zustand
 ├── types/           # Definições de tipos TypeScript
