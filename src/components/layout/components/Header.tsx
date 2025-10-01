@@ -41,7 +41,7 @@ export const Header = () => {
 
   return (
     <header className="relative overflow-hidden">
-      <ModeToggle className="absolute top-4 right-4 z-10" />
+      <ModeToggle className="absolute top-4 right-4 z-2" />
       {/* Imagem de fundo da empresa */}
       {companyData.background_image && (
         <div className="dark:opacity-30 opacity-70">
@@ -61,13 +61,13 @@ export const Header = () => {
             <img
               src={companyData.background_image}
               alt="Background"
-              className="w-full h-full object-cover opacity-30"
+              className="w-full h-56 object-cover opacity-30"
             />
           )}
         </div>
       )}
       {/* Informações importantes da empresa */}
-      <div className="relative z-20 container mx-auto p-4 h-full flex flex-col justify-end bg-background -mt-6 rounded-t-4xl">
+      <div className="relative z-3 container mx-auto p-4 h-full flex flex-col justify-end bg-background -mt-6 rounded-t-4xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
           <div className="flex items-center gap-4 bg-background p-2">
             {companyData.logo && (

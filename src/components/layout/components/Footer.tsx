@@ -16,7 +16,7 @@ export const Footer = () => {
       {/* Exibe o carrinho flutuante se houver itens e não estiver carregando */}
       {totalItems > 0 && !isLoading && (
         <div
-          className="sticky bottom-0 w-full bg-brand-primary text-white p-4 flex justify-between items-center cursor-pointer"
+          className="sticky bottom-0 w-full bg-brand-primary text-white p-4 flex justify-between items-center cursor-pointer z-30"
           onClick={() => setIsOpen(true)}
         >
           <div className="relative">

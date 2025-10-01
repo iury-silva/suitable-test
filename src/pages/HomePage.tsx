@@ -8,7 +8,7 @@ export const HomePage = () => {
   // Extrai categorias únicas dos produtos para exibição de seções separadas por categoria
   const categories = data
     ? Array.from(
-      // Usa um Map para garantir que cada categoria seja única e remover duplicatas
+        // Map para garantir que cada categoria seja única e remover duplicatas
         new Map(
           data.products.map((p) => [
             p.category_id, // Chave única para cada categoria
@@ -33,8 +33,7 @@ export const HomePage = () => {
       }, {} as Record<string, typeof data.products>)
     : {};
 
-
-  // Exibe skeletons enquanto os produtos estão carregando  
+  // Exibe skeletons enquanto os produtos estão carregando
   if (isLoadingProducts) {
     return (
       <div className="space-y-8">
@@ -51,6 +50,15 @@ export const HomePage = () => {
           </div>
         ))}
       </div>
+    );
+  }
+
+  // Se não houver produtos, exibe uma mensagem informando
+  if (!data || data.products.length === 0) {
+    return (
+      <p className="text-center text-muted-foreground">
+        Nenhum produto disponível.
+      </p>
     );
   }
 

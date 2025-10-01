@@ -5,7 +5,6 @@ import { useMemo } from "react";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/stores/cart";
-import { React } from "react";
 
 export function Products({ products }: { products: ProductsResponse }) {
   return (

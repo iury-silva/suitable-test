@@ -39,7 +39,7 @@ export const useCartStore = create<CartState>()(
         set((state) =>
           get().recalc(state.items.filter((item) => item.id !== id))
         ),
-        
+
       updateProductQuantity: (id, quantity) =>
         set((state) => {
           if (quantity <= 0) {
@@ -48,11 +48,12 @@ export const useCartStore = create<CartState>()(
             };
           }
           return get().recalc(
-            state.items.map((item) =>
-              item.id === id ? { ...item, quantity } : item // Atualiza a quantidade do item
+            state.items.map(
+              (item) => (item.id === id ? { ...item, quantity } : item) // Atualiza a quantidade do item
             )
           );
         }),
+      clearCart: () => set({ items: [], totalItems: 0, totalPrice: 0 }), // Limpa o carrinho
     }),
     {
       name: "cart-storage",

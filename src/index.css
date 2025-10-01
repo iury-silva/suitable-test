@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Variáveis da marca - serão atualizadas dinamicamente */
+  /* Variáveis da empresa - serão atualizadas dinamicamente */
   --brand-primary: #3b82f6;
   --brand-secondary: #10b981;
   --brand-background: #3b82f6;
